@@ -11,7 +11,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  noarch: python
+  number: 0
+  skip: True # [py<=36]
   script_env:
    - NEED_SCRIPTS=no   # [variant=="plugin"]
    - NEED_SCRIPTS=yes  # [variant=="patch"]
@@ -23,7 +24,7 @@ requirements:
     - wheel
     - pip
   run:
-    - python>=3.6
+    - python
     - conda>=23.7  # [variant=="plugin"]
     - conda>=22.11,<23.7   # [variant=="patch"]
 
