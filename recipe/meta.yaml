@@ -1,6 +1,6 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.2.0" %}
-{% set sha256 = "be40c23ae3f5e7b45782282e98e019e1b31d93536a612259393fec81f5f52a4b" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "58156aae02cd77d844b0d93192c0776459d71ed70a45c2a9d776cbc3b0afebab" %}
 
 package:
   name: {{ name }}
@@ -26,7 +26,7 @@ requirements:
   run:
     - python
     - conda>=23.7  # [variant=="plugin"]
-    - conda>=22.11,<23.7   # [variant=="patch"]
+    - conda>=4.11,<23.7   # [variant=="patch"]
 
 test:
   source_files:

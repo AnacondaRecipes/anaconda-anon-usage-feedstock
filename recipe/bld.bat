@@ -3,7 +3,7 @@ if "%NEED_SCRIPTS%" == "no" (
     del %SP_DIR%/anaconda_anon_usage/install.py
     exit 0
 )
-
+del %SP_DIR%/anaconda_anon_usage/plugin.py
 if not exist %PREFIX%\etc\conda\activate.d mkdir %PREFIX%\etc\conda\activate.d
 if not exist %PREFIX%\python-scripts mkdir %PREFIX%\python-scripts
 copy scripts\post-link.sh %PREFIX%\etc\conda\activate.d\%PKG_NAME%_activate.sh
