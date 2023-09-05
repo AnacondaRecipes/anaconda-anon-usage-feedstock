@@ -1,6 +1,6 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.2.0" %}
-{% set sha256 = "be40c23ae3f5e7b45782282e98e019e1b31d93536a612259393fec81f5f52a4b" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "58156aae02cd77d844b0d93192c0776459d71ed70a45c2a9d776cbc3b0afebab" %}
 
 package:
   name: {{ name }}
@@ -25,12 +25,14 @@ requirements:
     - pip
   run:
     - python
-    - conda>=23.7  # [variant=="plugin"]
-    - conda>=22.11,<23.7   # [variant=="patch"]
+    - conda >=23.7  # [variant=="plugin"]
+    - conda >=4.11,<23.7   # [variant=="patch"]
 
 test:
   source_files:
     - tests
+  imports:
+    - anaconda_anon_usage
   commands:
     - export ANACONDA_ANON_USAGE_DEBUG=1  # [unix]
     - set ANACONDA_ANON_USAGE_DEBUG=1  # [win]
@@ -41,8 +43,13 @@ test:
 about:
   home: https://github.com/Anaconda-Platform/anaconda-anon-usage
   summary: basic anonymous telemetry for conda clients
-  license: BSD-3
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   dev_url: https://github.com/Anaconda-Platform/anaconda-anon-usage/
   doc_url: https://github.com/Anaconda-Platform/anaconda-anon-usage/
+  description: |
+        This package augments the request header data that conda delivers
+        to package servers during index and package requests. Specifically,
+        three randomly generated tokens are appended to the "user agent"
+        that Conda already sends with each request.

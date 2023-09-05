@@ -1,8 +1,9 @@
-"${PREFIX}/bin/python" -m pip install --no-deps --ignore-installed -vv .
+"${PREFIX}/bin/python" -m pip install --no-deps --no-build-isolation --ignore-installed -vv .
 if [ "$NEED_SCRIPTS" == no ]; then
     rm ${SP_DIR}/anaconda_anon_usage/install.py
     exit 0
 fi
+rm ${SP_DIR}/anaconda_anon_usage/plugin.py
 mkdir -p "${PREFIX}/etc/conda/activate.d"
 mkdir -p "${PREFIX}/python-scripts"
 cp "scripts/post-link.sh" "${PREFIX}/etc/conda/activate.d/${PKG_NAME}_activate.sh"
