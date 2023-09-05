@@ -33,6 +33,7 @@ test:
     - tests
   requires:
     - python
+    - conda
   imports:
     - anaconda_anon_usage
   commands:
