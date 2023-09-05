@@ -33,6 +33,8 @@ test:
     - tests
   requires:
     - python
+  imports:
+    - anaconda_anon_usage
   commands:
     - export ANACONDA_ANON_USAGE_DEBUG=1  # [unix]
     - set ANACONDA_ANON_USAGE_DEBUG=1  # [win]
