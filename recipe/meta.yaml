@@ -31,9 +31,6 @@ requirements:
 test:
   source_files:
     - tests
-  requires:
-    - python
-    - conda
   imports:
     - anaconda_anon_usage
   commands:
