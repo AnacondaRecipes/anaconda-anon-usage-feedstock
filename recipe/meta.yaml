@@ -1,6 +1,6 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.3.0" %}
-{% set sha256 = "58156aae02cd77d844b0d93192c0776459d71ed70a45c2a9d776cbc3b0afebab" %}
+{% set version = "0.4.0" %}
+{% set sha256 = "e60e3236bc484e75aa4bde85350324d2f28d9996886f0e1087d5f3cdf1a12273" %}
 
 package:
   name: {{ name }}
@@ -25,20 +25,29 @@ requirements:
     - pip
   run:
     - python
+  run_constrained:
     - conda >=23.7  # [variant=="plugin"]
     - conda >=4.11,<23.7   # [variant=="patch"]
 
 test:
+  requires:
+    - conda
+    - pytest
+    - pytest-cov
   source_files:
     - tests
-  imports:
-    - anaconda_anon_usage
   commands:
     - export ANACONDA_ANON_USAGE_DEBUG=1  # [unix]
+    - export PYTHONUNBUFFERED=1  # [unix]
     - set ANACONDA_ANON_USAGE_DEBUG=1  # [win]
+    - set PYTHONUNBUFFERED=1 # [win]
+    - conda create -n testchild1 --yes
+    - conda create -n testchild2 --yes
     - conda info
+    - conda info --envs
     - python -m anaconda_anon_usage.install --status  # [variant=="patch"]
-    - python tests/test_config.py
+    - pytest -v tests/unit
+    - python tests/integration/test_config.py
 
 about:
   home: https://github.com/Anaconda-Platform/anaconda-anon-usage
