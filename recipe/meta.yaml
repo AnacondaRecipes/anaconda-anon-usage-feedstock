@@ -36,6 +36,8 @@ test:
     - pytest-cov
   source_files:
     - tests
+  imports:
+    - anaconda_anon_usage
   commands:
     - export ANACONDA_ANON_USAGE_DEBUG=1  # [unix]
     - export PYTHONUNBUFFERED=1  # [unix]
