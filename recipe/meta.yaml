@@ -1,13 +1,13 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.4.1" %}
-{% set sha256 = "c3106180de22ef8126ec07a5a76c274377d0e66e14e2d3aa2e4d662dcc29a8ba" %}
+{% set version = "0.4.2" %}
+{% set sha256 = "c4e86f45c9ab89b7c0a655e9797da36d2c7d16f74e2dcef8cf55701267e9779e" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/Anaconda-Platform/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  url: https://github.com/anaconda/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -52,13 +52,13 @@ test:
     - python tests/integration/test_config.py
 
 about:
-  home: https://github.com/Anaconda-Platform/anaconda-anon-usage
+  home: https://github.com/anaconda/anaconda-anon-usage
   summary: basic anonymous telemetry for conda clients
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  dev_url: https://github.com/Anaconda-Platform/anaconda-anon-usage/
-  doc_url: https://github.com/Anaconda-Platform/anaconda-anon-usage/
+  dev_url: https://github.com/anaconda/anaconda-anon-usage/
+  doc_url: https://github.com/anaconda/anaconda-anon-usage/
   description: |
         This package augments the request header data that conda delivers
         to package servers during index and package requests. Specifically,
