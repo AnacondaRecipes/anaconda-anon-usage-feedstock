@@ -11,7 +11,12 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  # We are using the build number to give a slight edge in the conda solver to the
+  # conda>=23.7 version of the package. So if you need to do a version bump, reset
+  # "patch" to 0 and "plugin" to 1. If you need to do a rebuild, add 2, not 1, to
+  # the current build number in each case.
+  number: 1  # [variant=="patch"]
+  number: 2  # [variant=="plugin"]
   skip: True # [py<=36]
   script_env:
    - NEED_SCRIPTS=no   # [variant=="plugin"]
