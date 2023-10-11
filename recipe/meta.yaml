@@ -1,6 +1,7 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.4.2" %}
-{% set sha256 = "c4e86f45c9ab89b7c0a655e9797da36d2c7d16f74e2dcef8cf55701267e9779e" %}
+{% set version = "0.4.3" %}
+{% set sha256 = "f384108baa07804d672a67190749a69248343773f622bf129034856e23c13358" %}
+{% set number = 0 %}
 
 package:
   name: {{ name }}
@@ -11,12 +12,10 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  # We are using the build number to give a slight edge in the conda solver to the
-  # conda>=23.7 version of the package. So if you need to do a version bump, reset
-  # "patch" to 0 and "plugin" to 1. If you need to do a rebuild, add 2, not 1, to
-  # the current build number in each case.
-  number: 1  # [variant=="patch"]
-  number: 2  # [variant=="plugin"]
+  # Use a build number difference to ensure that the plugin
+  # variant is slightly preferred by conda's solver.
+  number: {{ number + 100 }}  # [variant=="plugin"]
+  number: {{ number }}        # [variant=="patch"]
   skip: True # [py<=36]
   script_env:
    - NEED_SCRIPTS=no   # [variant=="plugin"]
@@ -52,7 +51,7 @@ test:
     - conda create -n testchild2 --yes
     - conda info
     - conda info --envs
-    - python -m anaconda_anon_usage.install --status  # [variant=="patch"]
+    - python -m anaconda_anon_usage.install --expect  # [variant=="patch"]
     - pytest -v tests/unit
     - python tests/integration/test_config.py
 
