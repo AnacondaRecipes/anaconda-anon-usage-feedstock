@@ -35,7 +35,8 @@ requirements:
 
 test:
   requires:
-    - conda
+    - conda >=23.7  # [variant=="plugin"]
+    - conda >=4.11,<23.7   # [variant=="patch"]
     - pytest
     - pytest-cov
   source_files:
