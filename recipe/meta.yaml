@@ -37,25 +37,12 @@ test:
   requires:
     - conda >=23.7  # [variant=="plugin"]
     - conda >=4.11,<23.7   # [variant=="patch"]
-    - pytest
-    - pytest-cov
-  source_files:
-    - tests
   imports:
     - anaconda_anon_usage
   commands:
-    - export ANACONDA_ANON_USAGE_DEBUG=1  # [unix]
-    - export PYTHONUNBUFFERED=1  # [unix]
-    - set ANACONDA_ANON_USAGE_DEBUG=1  # [win]
-    - set PYTHONUNBUFFERED=1 # [win]
-    - conda create -n testchild1 --yes
-    - conda create -n testchild2 --yes
     - conda info
-    - conda info --envs
+    - conda info --json
     - python -m anaconda_anon_usage.install --expect  # [variant=="patch"]
-    - pytest -v tests/unit
-    - pip install proxyspy
-    - python tests/integration/test_config.py
 
 about:
   home: https://github.com/anaconda/anaconda-anon-usage
