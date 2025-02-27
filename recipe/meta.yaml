@@ -1,6 +1,6 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.5.0" %}
-{% set sha256 = "549abbf34472dbdf332009f95e4b1278d7b0d839085a8b95eb6b73e4b3b42b80" %}
+{% set version = "0.6.1" %}
+{% set sha256 = "31182c9ab0f7f1e92c831a6c4d9fd59e922743b38c34956ee33b8dee5d8b6456" %}
 {% set number = 0 %}
 
 package:
@@ -54,6 +54,7 @@ test:
     - conda info --envs
     - python -m anaconda_anon_usage.install --expect  # [variant=="patch"]
     - pytest -v tests/unit
+    - pip install proxyspy
     - python tests/integration/test_config.py
 
 about:
