@@ -1,6 +1,6 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.7.1" %}
-{% set sha256 = "951da5afd65994907f56c7f4a3cd421cbe7c6d9d7ed77c8802cdd8f445cd8506" %}
+{% set version = "0.7.2" %}
+{% set sha256 = "b4b6c2d17a2ab7907b0e5e7846d7522f7a09a21c1ddd575aeae55c506b7d4e27" %}
 {% set number = 0 %}
 
 package:
