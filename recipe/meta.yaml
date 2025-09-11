@@ -16,7 +16,7 @@ build:
   # variant is slightly preferred by conda's solver.
   number: {{ number + 100 }}  # [variant=="plugin"]
   number: {{ number }}        # [variant=="patch"]
-  skip: True # [py<=36 or variant=="patch" and py>311]
+  skip: True # [variant=="patch" and py>311]
   script_env:
    - NEED_SCRIPTS=no   # [variant=="plugin"]
    - NEED_SCRIPTS=yes  # [variant=="patch"]
