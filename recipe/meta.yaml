@@ -1,7 +1,10 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.7.3" %}
-{% set sha256 = "27e9dcea2137ebb670a71a688397ce3e90cb9b95a88d3aa105a515db8bd468da" %}
+{% set version = "0.7.4" %}
+{% set sha256 = "6b0f10ec0b7b57ef3c1d4c4c710001993f31abd65e41388a63bc6dee2edf5fac" %}
 {% set number = 0 %}
+# We don't support 3.8 anymore, but this package is unique in that we seek
+# to support as wide a range of *existing* conda installations as practical
+{% set python_min = "3.8" %}
 
 package:
   name: {{ name }}
@@ -14,28 +17,30 @@ source:
 build:
   # Use a build number difference to ensure that the plugin
   # variant is slightly preferred by conda's solver.
+  noarch: python
   number: {{ number + 100 }}  # [variant=="plugin"]
   number: {{ number }}        # [variant=="patch"]
-  skip: True # [variant=="patch" and py>311]
   script_env:
    - NEED_SCRIPTS=no   # [variant=="plugin"]
    - NEED_SCRIPTS=yes  # [variant=="patch"]
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
     - setuptools
     - wheel
     - pip
   run:
-    - python
+    - python >={{ python_min }}        # [variant=="plugin"]
+    - python >={{ python_min }},<3.11  # [variant=="patch"]
   run_constrained:
-    - conda >=23.7  # [variant=="plugin"]
+    - conda >=23.7         # [variant=="plugin"]
     - conda >=4.11,<23.7   # [variant=="patch"]
 
 test:
   requires:
-    - conda >=23.7  # [variant=="plugin"]
+    - python {{ python_min }}
+    - conda >=23.7         # [variant=="plugin"]
     - conda >=4.11,<23.7   # [variant=="patch"]
     - pip
   imports:
@@ -59,3 +64,7 @@ about:
         to package servers during index and package requests. Specifically,
         three randomly generated tokens are appended to the "user agent"
         that Conda already sends with each request.
+
+extra:
+  skip-lints:
+    - avoid_noarch
