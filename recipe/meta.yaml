@@ -62,3 +62,7 @@ about:
         to package servers during index and package requests. Specifically,
         three randomly generated tokens are appended to the "user agent"
         that Conda already sends with each request.
+
+extra:
+  skip-lints:
+    - avoid_noarch
