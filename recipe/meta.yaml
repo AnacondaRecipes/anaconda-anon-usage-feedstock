@@ -1,6 +1,6 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.7.4" %}
-{% set sha256 = "6b0f10ec0b7b57ef3c1d4c4c710001993f31abd65e41388a63bc6dee2edf5fac" %}
+{% set version = "0.7.5" %}
+{% set sha256 = "7bddccd60f43e56946b21e7392fbcddff493d67ed299404be7222050fa6c7b51" %}
 {% set number = 0 %}
 # We don't support 3.8 anymore, but this package is unique in that we seek
 # to support as wide a range of *existing* conda installations as practical
