@@ -1,0 +1,8 @@
+# TODO: Remove this (specifically --no-test) after the following ticket is resolved:
+# https://anaconda.atlassian.net/browse/SIR-2928
+
+build_parameters:
+  - "--suppress-variables"
+  - "--skip-existing"
+  - "--error-overlinking"
+  - "--no-test"
