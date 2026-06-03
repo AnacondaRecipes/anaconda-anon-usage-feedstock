@@ -1,6 +1,5 @@
 {% set name = "anaconda-anon-usage" %}
-{% set version = "0.7.6" %}
-{% set sha256 = "1100137908c42a45c912b5d2deb0e8bfc3b29977be98fb6f1befc61665f043b0" %}
+{% set version = "0.8.1" %}
 {% set number = 0 %}
 # We don't support 3.8 anymore, but this package is unique in that we seek
 # to support as wide a range of *existing* conda installations as practical
@@ -12,7 +11,7 @@ package:
 
 source:
   url: https://github.com/anaconda/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 822eb9591fbe588e0a42dc55fc685ebc202b6b24ef74597519b8a9518935ac67
 
 build:
   # Use a build number difference to ensure that the plugin
