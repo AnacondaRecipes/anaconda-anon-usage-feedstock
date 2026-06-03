@@ -17,6 +17,8 @@ build:
   # Use a build number difference to ensure that the plugin
   # variant is slightly preferred by conda's solver.
   noarch: python
+  entry_points:
+   - anaconda-anon-usage = anaconda_anon_usage.main:main
   number: {{ number + 100 }}  # [variant=="plugin"]
   number: {{ number }}        # [variant=="patch"]
   script_env:
@@ -44,9 +46,13 @@ test:
     - pip
   imports:
     - anaconda_anon_usage
+    - anaconda_anon_usage.main
+    - anaconda_anon_usage.patch
+    - anaconda_anon_usage.tokens
   commands:
     - pip check
-    - conda info
+    - anaconda-anon-usage --version
+    - anaconda-anon-usage --help
     - conda info --json
     - python -m anaconda_anon_usage.install --expect  # [variant=="patch"]
 
